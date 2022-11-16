@@ -17,10 +17,8 @@ unsigned int _vprint(va_list args, const char var)
       len += ft_putpointer(va_arg(args, unsigned long long));
     if(var== 'u')
       len += ft_uputnbr(va_arg(args, unsigned int));
-    if(var == 'x')
-       len += ft_puthex(va_arg(args,unsigned int));
-    if(var== 'X')
-      len +=  ft_PUTHEX(va_arg(args, unsigned int));
+    if(var == 'x' || var == 'X')
+       len += ft_puthex(va_arg(args,int), var);
     if(var == '%')
         len += ft_putpercent(va_arg(args, unsigned int));
     return (len);

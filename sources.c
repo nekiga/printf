@@ -44,8 +44,10 @@ int ft_puthex(int num, int base)
       }
 
     hexnum[j] = '\0';
+    i = j;
     while (j + 1)
         ft_putchar(hexnum[j--]);
+    return (i);
 }
 
 int ft_putnbr(char *s);
