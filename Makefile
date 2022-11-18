@@ -1,5 +1,5 @@
 CC = gcc
-SRC = ft_printf sources
+SRC = ft_printf sources aux
 CFLAGS = -Wextra -Wall -Werror
 NAME = libftprintf.a
 
@@ -17,7 +17,6 @@ clean:
 fclean:
 	make fclean -C libft
 	rm -f $(SRC:=.o) $(NAME)
-teste:
-	gcc test.c libftprintf.a && ./a.out
-re: fclean all teste
+
+re: fclean all
 

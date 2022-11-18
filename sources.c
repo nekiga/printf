@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:33:28 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/17 17:25:15 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:15:59 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putstr(char *s)
 
 	i = 0;
 	while (s[i])
-		ft_putchar(s[i]);
+		ft_putchar(s[i++]);
 	return (i);
 }
 
@@ -71,19 +71,28 @@ int	ft_puthex(int num, int base)
 
 int	ft_putnbr(long long num)
 {
-	int		i;
-	int		sign;
 	char	*buffer;
 	int		len;
 
-	i = 0;
-	sign = 1;
 	if (num < 0)
 		ft_putchar('-');
 	len = ft_strlen(ft_itoa(num));
 	buffer = (char *)malloc(sizeof(char) * len + 1);
-	ft_strlcpy(buffer, ft_itoa(num), len);
+	ft_strlcpy(buffer, ft_itoa(num), len + 1);
 	ft_putstr(buffer);
 	return (len);
 }
-int	ft_putpointer(char *s);
+int	ft_putpointer(long long pointer)
+{
+	return (1);
+}
+
+int	main(void)
+{
+	int	num = 135650;
+
+	printf("Prinf prints: %i\n", num);
+	printf("My function returns: \n");
+	ft_putnbr(num);
+	printf("\n");
+}
