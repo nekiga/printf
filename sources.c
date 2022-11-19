@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:33:28 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/18 15:15:59 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:38:52 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,16 @@ int	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	while (s[i])
-		ft_putchar(s[i++]);
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
 	return (i);
 }
 
@@ -57,6 +65,12 @@ int	ft_puthex(int num, int base)
 	j = 0;
 	quotient = num;
 	remainder = 0;
+	/* if (base == 'p')
+	{
+		if (!num)
+			return (ft_putstr("(nil)"));
+		i = ft_putstr("0x");
+	} */
 	while (quotient != 0)
 	{
 		hexnum[j++] = ft_conv(quotient, remainder, base);
@@ -69,30 +83,28 @@ int	ft_puthex(int num, int base)
 	return (i);
 }
 
-int	ft_putnbr(long long num)
+int	ft_putnbr(long long num, int flag)
 {
 	char	*buffer;
 	int		len;
 
-	if (num < 0)
-		ft_putchar('-');
-	len = ft_strlen(ft_itoa(num));
+	len = ft_strlen(ft_itoa(num, flag));
 	buffer = (char *)malloc(sizeof(char) * len + 1);
-	ft_strlcpy(buffer, ft_itoa(num), len + 1);
+	ft_strlcpy(buffer, ft_itoa(num, flag), len + 1);
 	ft_putstr(buffer);
 	return (len);
 }
-int	ft_putpointer(long long pointer)
-{
-	return (1);
-}
 
+/*
 int	main(void)
 {
-	int	num = 135650;
-
-	printf("Prinf prints: %i\n", num);
+	unsigned int nipple = -4562;
+	
+	printf("Prinf prints: %u\n", nipple);
 	printf("My function returns: \n");
-	ft_putnbr(num);
+	ft_putnbr(nipple, 'u');
+	//ft_puthex(nipple, base);
 	printf("\n");
+	//free(nipple);
 }
+*/

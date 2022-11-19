@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:01:29 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/18 14:02:30 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:09:07 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-int	ft_countlen(int n)
+long long	ft_countlen(long long n)
 {
-	int	c;
+	long long	c;
 
 	c = 0;
 	if (n <= 0)
@@ -43,31 +43,32 @@ int	ft_countlen(int n)
 	return (c);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long n, int flag)
 {
 	char		*str;
 	int			len;
-	long int	numb;
 
-	numb = n;
-	len = ft_countlen(numb);
+	len = ft_countlen(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (0);
-	if (numb < 0)
+	if (n < 0)
 	{
-		str[0] = '-';
-		numb *= -1;
+		if (flag != 'u')
+			str[0] = '-';
+		else
+			len--;
+		n *= -1;
 	}
-	if (numb == 0)
+	if (n == 0)
 		str[0] = '0';
 	str[len] = '\0';
 	len--;
-	while (numb)
+	while (n)
 	{
-		str[len] = numb % 10 + '0';
+		str[len] = n % 10 + '0';
 		len--;
-		numb /= 10;
+		n /= 10;
 	}
 	return (str);
 }

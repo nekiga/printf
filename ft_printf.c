@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:34:31 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/18 13:25:28 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/19 14:59:28 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ unsigned int	_vprint(va_list args, const char var)
 	if (var == 's')
 		len += ft_putstr(va_arg(args, char *));
 	if (var == 'd' || var == 'i' || var == 'u')
-		len += ft_putnbr(va_arg(args, int));
+		len += ft_putnbr(va_arg(args, int), var);
 	if (var == 'p')
-		len += ft_putpointer(va_arg(args, long long));
+		return (0);
 	if (var == 'x' || var == 'X')
 		len += ft_puthex(va_arg(args, int), var);
 	if (var == '%')
@@ -39,19 +39,22 @@ int	ft_printf(const char *s, ...)
 	va_list			args;
 
 	i = 0;
+	len = 0;
 	va_start(args, s);
 	if (!s)
 		return (-1);
 	while (s[i])
 	{
-		if (s[i] != '%')
-			ft_putchar(s[i]);
-		else
+		if (s[i] == '%')
 		{
-			len = i + _vprint(args, s[i + 1]);
+			len += _vprint(args, s[i + 1]);
 			i++;
 		}
+		else
+			len += ft_putchar(s[i]);
 		i++;
 	}
+	va_end(args);
 	return (len);
 }
+
