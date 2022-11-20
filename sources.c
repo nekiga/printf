@@ -37,7 +37,7 @@ int	ft_putstr(char *s)
 }
 
 
-char	ft_conv(int quotient, int remainder, int base)
+char	ft_conv(unsigned long long quotient, unsigned long long remainder, int base)
 {
 	remainder = quotient % 16;
 	if (remainder < 10)
@@ -53,24 +53,18 @@ char	ft_conv(int quotient, int remainder, int base)
 	return ('\0');
 }
 
-int	ft_puthex(int num, int base)
+int	ft_puthex(unsigned long long num, int base)
 {
 	int		i;
 	int		j;
-	long	remainder;
-	long	quotient;
+	unsigned long long	remainder;
+	unsigned long long	quotient;
 	char	hexnum[100];
 
 	i = 0;
 	j = 0;
 	quotient = num;
 	remainder = 0;
-	/* if (base == 'p')
-	{
-		if (!num)
-			return (ft_putstr("(nil)"));
-		i = ft_putstr("0x");
-	} */
 	while (quotient != 0)
 	{
 		hexnum[j++] = ft_conv(quotient, remainder, base);
@@ -83,28 +77,30 @@ int	ft_puthex(int num, int base)
 	return (i);
 }
 
+
 int	ft_putnbr(long long num, int flag)
 {
 	char	*buffer;
 	int		len;
+	char	*str;
 
-	len = ft_strlen(ft_itoa(num, flag));
+	str =  ft_itoa(num, flag);
+	len = ft_strlen(str);
 	buffer = (char *)malloc(sizeof(char) * len + 1);
-	ft_strlcpy(buffer, ft_itoa(num, flag), len + 1);
+	ft_strlcpy(buffer, str, len + 1);
 	ft_putstr(buffer);
+	free(buffer);
+	free(str);
 	return (len);
 }
-
-/*
-int	main(void)
+int ft_putpointer(void *p)
 {
-	unsigned int nipple = -4562;
+	unsigned long long *pp;
+
+	pp = (unsigned long long *)&p;
 	
-	printf("Prinf prints: %u\n", nipple);
-	printf("My function returns: \n");
-	ft_putnbr(nipple, 'u');
-	//ft_puthex(nipple, base);
-	printf("\n");
-	//free(nipple);
+	if (!pp)
+			return (ft_putstr("(nil)"));
+	ft_putstr("0x");
+	return (ft_puthex(*pp,'x') + 2);
 }
-*/

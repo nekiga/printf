@@ -24,7 +24,7 @@ unsigned int	_vprint(va_list args, const char var)
 	if (var == 'd' || var == 'i' || var == 'u')
 		len += ft_putnbr(va_arg(args, int), var);
 	if (var == 'p')
-		return (0);
+		len += ft_putpointer(va_arg(args, void *));
 	if (var == 'x' || var == 'X')
 		len += ft_puthex(va_arg(args, int), var);
 	if (var == '%')
@@ -58,3 +58,22 @@ int	ft_printf(const char *s, ...)
 	return (len);
 }
 
+/*int	main(void)
+{
+	unsigned int num = 1725;
+	unsigned int hex = 12391;
+	int *p = malloc(1);
+	int	flag = 'X';
+	
+
+	printf("Printf prints: \n");
+	int valReal = printf("Hello my name is %p", p);
+	printf("\n");
+	printf("Return value: %d\n", valReal);
+	printf("My function returns: \n");
+	int valMine = ft_printf("Hello my name is %p", p);
+	printf(" \n");
+	printf("Return value: %d\n", valMine);
+	printf("\n");
+	free(p);
+}*/

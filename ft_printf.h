@@ -21,7 +21,8 @@
 int	ft_putchar(char c);
 int	ft_putstr(char *s);
 int	ft_putnbr(long long num, int flag);
-int	ft_puthex(int num, int base);
+int	ft_puthex(unsigned long long num, int base);
+int ft_putpointer(void *p);
 int	ft_putpercent(char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_itoa(long long n, int flag);
