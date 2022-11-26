@@ -6,12 +6,12 @@
 #    By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 16:17:42 by garibeir          #+#    #+#              #
-#    Updated: 2022/11/18 16:17:43 by garibeir         ###   ########.fr        #
+#    Updated: 2022/11/26 15:54:38 by garibeir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-SRC = ft_printf sources aux
+SRC = ft_printf sources aux unsigned
 CFLAGS = -Wextra -Wall -Werror
 NAME = libftprintf.a
 

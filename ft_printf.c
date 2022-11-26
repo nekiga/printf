@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:34:31 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/19 14:59:28 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:23:41 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ unsigned int	_vprint(va_list args, const char var)
 		len += ft_putchar(va_arg(args, int));
 	if (var == 's')
 		len += ft_putstr(va_arg(args, char *));
-	if (var == 'd' || var == 'i' || var == 'u')
+	if (var == 'd' || var == 'i')
 		len += ft_putnbr(va_arg(args, int), var);
+	if (var == 'u')
+		len += ft_uputnbr(va_arg(args, unsigned int));
 	if (var == 'p')
-		len += ft_putpointer(va_arg(args, void *));
+		len += ft_putpointer(va_arg(args, unsigned long));
 	if (var == 'x' || var == 'X')
-		len += ft_puthex(va_arg(args, int), var);
+		len += ft_puthex(va_arg(args, unsigned int), var);
 	if (var == '%')
 		len += ft_putchar('%');
 	return (len);
@@ -57,23 +59,3 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (len);
 }
-
-/*int	main(void)
-{
-	unsigned int num = 1725;
-	unsigned int hex = 12391;
-	int *p = malloc(1);
-	int	flag = 'X';
-	
-
-	printf("Printf prints: \n");
-	int valReal = printf("Hello my name is %p", p);
-	printf("\n");
-	printf("Return value: %d\n", valReal);
-	printf("My function returns: \n");
-	int valMine = ft_printf("Hello my name is %p", p);
-	printf(" \n");
-	printf("Return value: %d\n", valMine);
-	printf("\n");
-	free(p);
-}*/

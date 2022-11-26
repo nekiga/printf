@@ -6,7 +6,7 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:01:29 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/19 15:09:07 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:56:43 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ char	*ft_itoa(long long n, int flag)
 	}
 	if (n == 0)
 		str[0] = '0';
-	str[len] = '\0';
-	len--;
+	str[len--] = '\0';
 	while (n)
 	{
 		str[len] = n % 10 + '0';
@@ -81,4 +80,10 @@ size_t	ft_strlen(const char *str)
 	while (str[c])
 		c++;
 	return (c);
+}
+
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
 }

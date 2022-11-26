@@ -6,17 +6,11 @@
 /*   By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:33:28 by garibeir          #+#    #+#             */
-/*   Updated: 2022/11/19 15:38:52 by garibeir         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:23:53 by garibeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
 
 int	ft_putstr(char *s)
 {
@@ -36,8 +30,8 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-
-char	ft_conv(unsigned long long quotient, unsigned long long remainder, int base)
+char	ft_conv(unsigned long long quotient, unsigned long long remainder,
+		int base)
 {
 	remainder = quotient % 16;
 	if (remainder < 10)
@@ -55,52 +49,44 @@ char	ft_conv(unsigned long long quotient, unsigned long long remainder, int base
 
 int	ft_puthex(unsigned long long num, int base)
 {
-	int		i;
-	int		j;
+	int					i;
+	int					j;
 	unsigned long long	remainder;
-	unsigned long long	quotient;
-	char	hexnum[100];
+	char				hexnum[100];
 
 	i = 0;
 	j = 0;
-	quotient = num;
 	remainder = 0;
-	while (quotient != 0)
+	if (num == 0)
+		return (ft_putchar('0'));
+	while (num != 0)
 	{
-		hexnum[j++] = ft_conv(quotient, remainder, base);
-		quotient /= 16;
+		hexnum[j++] = ft_conv(num, remainder, base);
+		num /= 16;
 	}
 	hexnum[j] = '\0';
 	i = j;
-	while (j + 1)
-		ft_putchar(hexnum[j--]);
+	while (j)
+		ft_putchar(hexnum[--j]);
 	return (i);
 }
 
-
 int	ft_putnbr(long long num, int flag)
 {
-	char	*buffer;
 	int		len;
 	char	*str;
 
-	str =  ft_itoa(num, flag);
+	str = ft_itoa(num, flag);
 	len = ft_strlen(str);
-	buffer = (char *)malloc(sizeof(char) * len + 1);
-	ft_strlcpy(buffer, str, len + 1);
-	ft_putstr(buffer);
-	free(buffer);
+	ft_putstr(str);
 	free(str);
 	return (len);
 }
-int ft_putpointer(void *p)
-{
-	unsigned long long *pp;
 
-	pp = (unsigned long long *)&p;
-	
+int	ft_putpointer(unsigned long pp)
+{
 	if (!pp)
-			return (ft_putstr("(nil)"));
+		return (ft_putstr("(nil)"));
 	ft_putstr("0x");
-	return (ft_puthex(*pp,'x') + 2);
+	return (ft_puthex(pp, 'x') + 2);
 }
