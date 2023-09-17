@@ -1,9 +1,6 @@
 # printf
-Project to recreate the printf function in c.
-Steps: 
-Make printf logic
-Make necessary functions
-Make MakeFile
+Pedagogical project to recreate the printf function in c.
+
 
 Flags: 
 %c Prints a single character.
@@ -17,18 +14,4 @@ Flags:
 • %% Prints a percent sign.
 
 
-char	ft_conv(int quotient, int remainder, int base)
-{
-	remainder = quotient % 16;
-	if (remainder < 10)
-		return (48 + remainder);
-	else
-	{
-		if (base == 'X')
-			return (55 + remainder);
-		if (base == 'x')
-			return (87 + remainder);
-	}
-	quotient /= 16;
-	return ('\0');
 }
