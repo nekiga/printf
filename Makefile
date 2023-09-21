@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: garibeir < garibeir@student.42lisboa.com > +#+  +:+       +#+         #
+#    By: garibeir <garibeir@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 16:17:42 by garibeir          #+#    #+#              #
-#    Updated: 2022/11/26 15:54:38 by garibeir         ###   ########.fr        #
+#    Updated: 2023/09/21 10:53:05 by garibeir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 SRC = ft_printf sources aux unsigned
 CFLAGS = -Wextra -Wall -Werror
-NAME = libftprintf.a
+NAME = printf.a
 
 all: $(NAME)
 
